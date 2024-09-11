@@ -1,10 +1,11 @@
 from flask import render_template, Blueprint, request
 from flask_paginate import Pagination, get_page_parameter
 from core.models import Student
+from core.utils.decorators import institute_required
 
 institute_dashboard_bp = Blueprint("institute_dashboard", __name__)
 
-
+@institute_required
 @institute_dashboard_bp.route("/institute_dashboard")
 def institute_dashboard():
     students = Student.query.all()
@@ -19,8 +20,9 @@ def institute_dashboard():
         female_students=female_students,
     )
 
-
+@institute_required
 @institute_dashboard_bp.route("/student/<student_id>")
 def student_details(student_id):
     student = Student.query.filter_by(student_id=student_id).first_or_404()
     return render_template("institute_dashboard/student_details.html", student=student)
+

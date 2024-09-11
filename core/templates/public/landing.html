@@ -7,4 +7,17 @@
         minus neque
         ut harum voluptatum expedita labore nesciunt, quae recusandae illo, doloremque blanditiis quasi? Ad, enim!</p>
 </div>
+<div class="container border rounded my-5 p-3">
+	<code class="d-block">This is temp link for quick access</code>
+	<a class="btn btn-primary" href="{{url_for('auth.institute_login')}}">login as institute</a>
+	
+	{% if current_user.is_authenticated %}
+	<p>Welcome, {{ current_user.name }}!</p>
+	<a class="btn btn-danger" href="{{url_for('auth.institute_logout')}}">logout institute</a>
+	{% else %}
+	    <a href="{{ url_for('auth.institute_login') }}">Login</a>
+	    <a href="{{ url_for('auth.institute_register') }}">Register</a>
+	{% endif %}
+</div>
+
 {% endblock body %}
