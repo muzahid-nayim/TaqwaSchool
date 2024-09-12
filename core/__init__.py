@@ -14,8 +14,8 @@ mail = Mail()
 
 #   define which route is mendatory if we try to access any unauthorize page.
 #   in this case we are trying to access account page but before we access that page we must have to login first.
-login_manager.login_view = 'auth.login' # 'login' is the route name
-
+# login_manager.login_view = 'auth.login' # 'login' is the route name
+login_manager.login_view = "auth.institute_login"  # Set default login route
 #   beautify the flash message in login page which is authenticate by flask_login
 login_manager.login_message_category = 'info' # 'info' is the bootstrap class name what will beautify our alert box
 

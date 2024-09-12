@@ -118,7 +118,3 @@ class Institute(db.Model, UserMixin):
         return bcrypt.check_password_hash(self.password, password)
     
 
-@property
-def is_active(self):
-    # Custom logic to determine if the account is active
-    return True	

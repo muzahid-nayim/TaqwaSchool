@@ -56,6 +56,7 @@ def institute_login():
 
         if institute and bcrypt.check_password_hash(institute.password, password):
             login_user(institute)
+            print(f"Logged in as: {current_user}")
             next_page = request.args.get("next")
             return (
                 redirect(next_page)
