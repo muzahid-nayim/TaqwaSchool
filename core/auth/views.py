@@ -22,20 +22,12 @@ def institute_register():
         if existing_institute:
             flash("An institute with this email already exists.", "danger")
             return redirect(url_for("auth.institute_register"))
-
-        # Create and save the new institute
         institute = Institute(name=form.name.data, email=form.email.data)
         institute.set_password(form.password.data)
-        
-        # Attempt to add and commit the new institute
         db.session.add(institute)
         db.session.commit()
-        
-        # If commit is successful
         flash("Your institute has been registered! You can now log in.", "success")
         return redirect(url_for("auth.institute_login"))
-    
-    # If form is not valid, print validation errors
     print("Form validation errors:", form.errors)
 
     return render_template("auth/institute_register.html", form=form)
@@ -56,7 +48,6 @@ def institute_login():
 
         if institute and bcrypt.check_password_hash(institute.password, password):
             login_user(institute)
-            print(f"Logged in as: {current_user}")
             next_page = request.args.get("next")
             return (
                 redirect(next_page)
